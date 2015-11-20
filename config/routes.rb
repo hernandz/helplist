@@ -2,6 +2,8 @@ Rails.application.routes.draw do
 
   root 'questions#new'
 
-  get 'create'      => 'questions#create'
+  post 'create' => 'questions#create'
+  resources :questions
+
 
 end

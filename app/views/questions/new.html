@@ -1,15 +1,25 @@
 <div id="main-container" class="container">
-    <div class="row">
-    	<div class="col-xs-12">
-    		<h4>HelpList</h4>
+    <div class="row" id="above-question-text">
+    	<div class="col-xs-1">
+    		<h4>Help<span style="color:#008210;">List</span></h4>
     	</div>
-	
+    	<div class="col-xs-11" id="question-status">
+    		<% @question.errors.full_messages.each do |msg| %>
+ 				<span style="color:#ff3333"><%= msg %></span>
+			<% end %>
+			 <% if flash[:notice] %>
+				<span style="color:#008210"><%= flash[:notice] %></span>
+			 <% end %>
+		</div>
+	</div>
+	<div class="row">
+
 		<div id="asking" class="col-xs-12">
 				<%= form_for(@question, :url => {:action => :create}, :html => { :class => "new_question form-horizontal" } ) do |form|%>
 					<div class="form-group form-group-lg">
-						<%= form.text_area(:question_text, :placeholder => "Ask a question!", :class => "form-control", :id =>"ask-box",:rows=>"6")  %>
+						<%= form.text_area(:question_text, :placeholder => "Ask a question!", :class => "form-control", :id =>"ask-box",:rows=>"8")  %>
 					</div>
-					<%= form.submit(:class=>"btn btn-default")%>
+					<%= form.submit(:class=>"btn btn-primary btn-lg", :id=>"home-ask-button")%>
 				<%end%>
 	        </div>
    		</div>
