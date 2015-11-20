@@ -1,8 +1,9 @@
 class QuestionsController < ApplicationController
 	def new 
+		@question = Question.new 
 	end
 
-	def edit
+	def create
 	end
 
 	def delete
