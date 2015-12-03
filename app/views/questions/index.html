@@ -1,0 +1,22 @@
+<nav class="navbar navbar-default navbar-static-top">
+  <div class="container">
+    SEARCH BAR LOL  
+  </div>
+</nav>
+<%@questions.each do |question|%>
+
+	<div class="col-xs-12 question">
+
+		<div class="col-xs-2">
+			<div class="upvotes">5</div>
+		</div>
+		<div class="col-xs-9 question-text">
+			<%=question.question_text%>
+		</div>
+		<div class="col-xs-1">
+
+		</div>
+
+	</div>
+
+<%end%>
