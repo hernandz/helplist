@@ -6,7 +6,21 @@ class AnswersController < ApplicationController
   def index
     @answers = Answer.all
   end
+  def upvote
+    answer = Answer.find(params[:id])
+    answer.upvotes = answer.upvotes+1
+    answer.upvoted = true
+    answer.save
+    redirect_to(:back)
+  end
+  def downvote
+    answer = Answer.find(params[:id])
+    answer.upvotes = answer.upvotes-1
+    answer.upvoted = false
 
+    answer.save
+    redirect_to(:back)
+  end
   def controls
   end
   # GET /answers/1
