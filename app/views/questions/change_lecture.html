@@ -1,0 +1,16 @@
+<div id="main-container" class="container">
+
+<%@subjects.each do |subject|%>
+
+	<div class="row">
+
+		
+		<a href="<%="/questions/new/#{subject.id}"%>">	
+			<div class="col-xs-12 subject">
+				<%=subject.name%>
+			</div>
+		</a>
+	</div>
+
+<%end%>
+</div>

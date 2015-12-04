@@ -1,0 +1,21 @@
+<% @questions.each do |question| %>
+			<div class="row text-tile">
+
+				<div class="col-xs-3 upvote-block" id="<%="#{question.id}"%>">
+					<i class="fa fa-arrow-up"></i>
+					<div class="upvotes">
+						<%=question.upvotes%>
+					</div>
+					<div class="upvote-label">want to</div>
+					<div class="upvote-label">know</div>
+				</div>
+				<a href="<%="/questions/display/#{question.id}"%>">	
+					<div class="col-xs-8 text-tile-text">
+						<%=question.text%>
+					</div>
+					<div class="col-xs-1 forward">
+						<i class="fa fa-chevron-right"></i>
+					</div>
+				</a>
+			</div>
+<% end %>

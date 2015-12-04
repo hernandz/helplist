@@ -7,6 +7,8 @@ class AnswersController < ApplicationController
     @answers = Answer.all
   end
 
+  def controls
+  end
   # GET /answers/1
   # GET /answers/1.json
   def show
@@ -15,26 +17,29 @@ class AnswersController < ApplicationController
   # GET /answers/new
   def new
     @answer = Answer.new
+    @answers = Question.find(params[:id]).answers
+    @question = Question.find(params[:id])
   end
 
   # GET /answers/1/edit
   def edit
+    @answer = Answer.find(params[:id])
   end
 
   # POST /answers
   # POST /answers.json
   def create
-    @answer = Answer.new(answer_params)
+    @question = Question.find(params[:answer][:question_id])
+    @answer = Answer.new
+    @answer.upvotes = 0;
 
-    respond_to do |format|
-      if @answer.save
-        format.html { redirect_to @answer, notice: 'Answer was successfully created.' }
-        format.json { render :show, status: :created, location: @answer }
+    if @answer.update(answer_params(params[:answer])) 
+
+      redirect_to(:controller=> :questions, :action => :display, :id => @question.id)
       else
-        format.html { render :new }
-        format.json { render json: @answer.errors, status: :unprocessable_entity }
+
+        render(:action => :new, :id => @question.id)
       end
-    end
   end
 
   # PATCH/PUT /answers/1
@@ -68,7 +73,7 @@ class AnswersController < ApplicationController
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
-    def answer_params
-      params[:answer]
+    def answer_params(params)
+      params.permit(:text,:question_id)
     end
 end

@@ -1,0 +1,22 @@
+<div id="main-container" class="container">
+	<div class="row">
+		<div class="col-xs-12" style="margin-top:13em;">
+			<h3 style="text-align:center;">
+				Log-in to receive email notifications:
+			</h3>
+		</div>
+	</div>
+	<div class="row">
+			<%= form_tag("/questions/post_log_in",:html=>{:class => "form-inline"}) do %>
+					<div class="form-group">
+						<div class="col-xs-8">
+						<%= text_field_tag(:text, nil, :placeholder => "anyone@example.com", :class => "form-control", :id =>"login")  %>
+						</div>
+						<div class="col-xs-4">
+
+							<%= submit_tag("Submit", :class=>"btn btn-primary", :id=>"login-button")%>
+						</div>
+			<%end%>
+		</div>
+	</div>
+</div>

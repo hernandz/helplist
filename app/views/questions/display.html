@@ -1,0 +1,61 @@
+
+<div id="main-container" class="container">
+	<div class="row" id="answering-top">
+		<div id="answering-top-fixed">
+			<div class="col-xs-3 upvote-block">
+				<div style="font-size:1.2em;" id="answer-block">
+					<i class="fa fa-arrow-up"></i>
+					<div class="upvotes">
+						<%=@question.upvotes%>
+					</div>
+					<div class="upvote-label">want to</div>
+					<div class="upvote-label">know</div>
+				</div>
+			</div>
+			<div class="col-xs-9 big-question-text">
+				<%=@question.text%>
+			</div>
+		</div>
+	</div>
+			<a href="/answers/new/<%="#{@question.id}"%>#answering-top-fixed">
+
+	<div class="row">
+			<div id="write-answer">
+				Write answer
+			</div>
+	</div>
+			</a>
+
+	<div class="answer-index">
+		<%if @answers%>
+			<%@answers.each do |answer|%>
+				<div class="row text-tile">
+
+					<div class="col-xs-3 upvote-block" id="<%="#{answer.id}"%>">
+						<i class="fa fa-arrow-up"></i>
+						<div class="upvotes">
+							<%=answer.upvotes%>
+						</div>
+						<div class="upvote-label">found this</div>
+						<div class="upvote-label">helpful</div>
+					</div>
+					<div class="col-xs-8 text-tile-text">
+						<%=answer.text%>
+					</div>
+					<div class="col-xs-1 forward">
+						<i class="fa fa-cog answer-cog"></i>
+					</div>
+				</div>
+			<%end%>
+		<%else%>
+			<div class="row text-tile">
+
+				
+				<div class="col-xs-12 question-text">
+					No answers yet!
+				</div>
+
+			</div>
+		<%end%>
+	</div>
+</div>

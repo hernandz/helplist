@@ -1,0 +1,71 @@
+
+<div id="main-container" class="container">
+	<div class="row" id="answering-top">
+		<div id="answering-top-fixed">
+			<div class="col-xs-3 upvote-block">
+				<div style="font-size:1.2em;" id="answer-block">
+					<i class="fa fa-arrow-up"></i>
+					<div class="upvotes">
+						<%=@question.upvotes%>
+					</div>
+					<div class="upvote-label">want to</div>
+					<div class="upvote-label">know</div>
+				</div>
+			</div>
+			<div class="col-xs-9 big-question-text">
+				<%=@question.text%>
+			</div>
+		</div>
+	</div>
+	<div class="row">
+		<div id="answering-top-fixed">
+
+			<div class="col-xs-12 big-question-text" id="new-answer">
+				<%= form_for(@answer, :url => {:action => :create}, :html => { :class => "new_question form-horizontal", :id => "answer-form" } ) do |form|%>
+					<div class="form-group form-group-lg">
+						<%= form.text_area(:text, :placeholder => "Send an answer!", :class => "form-control", :id =>"ask-box",:rows=>"7")  %>
+						<%= form.hidden_field(:question_id, :value=> @question.id) %>
+					</div>
+				<%end%>
+			</div>
+		</div>
+	</div>
+	<div class="row">
+		<div id="submit-answer" onClick="document.forms['answer-form'].submit();">
+
+			Submit
+		</div>
+	</div>
+	<div class="answer-index">
+		<%if @answers%>
+			<%@answers.each do |answer|%>
+				<div class="row text-tile">
+
+					<div class="col-xs-3 upvote-block" id="<%="#{answer.id}"%>">
+						<i class="fa fa-arrow-up"></i>
+						<div class="upvotes">
+							<%=answer.upvotes%>
+						</div>
+						<div class="upvote-label">found this</div>
+						<div class="upvote-label">helpful</div>
+					</div>
+					<div class="col-xs-8 text-tile-text">
+						<%=answer.text%>
+					</div>
+					<div class="col-xs-1 forward">
+						<i class="fa fa-cog answer-cog"></i>
+					</div>
+				</div>
+			<%end%>
+		<%else%>
+			<div class="row text-tile">
+
+				
+				<div class="col-xs-12 question-text">
+					No answers yet!
+				</div>
+
+			</div>
+		<%end%>
+	</div>
+</div>

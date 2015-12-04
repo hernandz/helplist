@@ -1,9 +1,14 @@
 source 'https://rubygems.org'
+
+gem 'sprockets-rails', '~> 2.3', '>= 2.3.3'
+
 gem 'bootstrap', '~> 4.0.0.alpha1'
 #gem 'bootstrap-sass', '~> 3.2.0'
 source 'https://rails-assets.org' do
   gem 'rails-assets-tether', '>= 1.1.0'
 end
+gem "font-awesome-rails"
+
 gem 'autoprefixer-rails'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.2.3'

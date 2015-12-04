@@ -1,22 +1,87 @@
-<nav class="navbar navbar-default navbar-static-top">
-  <div class="container">
-    SEARCH BAR LOL  
-  </div>
-</nav>
-<%@questions.each do |question|%>
+<div id="main-container" class="container">
+	<div class="row">
+		<nav class="navbar search-bar navbar-fixed-top">
+				<form class="form-inline" role="form">
+				    <div class="col-xs-2">
+				    	<i class="fa fa-search"></i>
+				    </div>		
+				    <div class="col-xs-8" style="padding-left:0; padding-right:0;">
+				    	<input type="search" class="form-control" id="search" placeholder="Search">
+					</div>
+					 <a href="/questions/change_sort">
 
-	<div class="col-xs-12 question">
-
-		<div class="col-xs-2">
-			<div class="upvotes">5</div>
-		</div>
-		<div class="col-xs-9 question-text">
-			<%=question.question_text%>
-		</div>
-		<div class="col-xs-1">
-
-		</div>
-
+					<div class="col-xs-2">
+				    	<i class="fa fa-cog"></i>
+				    </div>	
+				</a>
+				</form>	 
+		</nav>
 	</div>
+	<nav class="navbar search-bar behind navbar-static-top">
+	  <div class="container">
+			&nbsp;	
+	  </div>
+	</nav>
+	<a href="/questions/new/<%=@subject_id%>?lecture_id=<%=params[:id]%>">
+		<nav class="navbar navbar-fixed-bottom" id="ask-button-bar">
+		  <div class="container">
+		  		Ask new question
+		  </div>
+		</nav>
+	</a>
+	<div id="filtered">
+	</div>
+	<div id="unfiltered">
+		<%@questions.each do |question|%>
 
-<%end%>
+			<div class="row text-tile">
+							
+				<%if question.upvoted%>
+					<a href="/questions/downvote/<%=question.id%>">
+					<div class="col-xs-3 upvote-block" id="<%="#{question.id}"%>">
+						<i class="fa fa-arrow-up"></i>
+						<div class="upvotes-green">
+							<%=question.upvotes%>
+						</div>
+						<div class="upvote-label-green">want to</div>
+						<div class="upvote-label-green">know</div>
+					</div>
+					<a href="<%="/questions/display/#{question.id}"%>">	
+						<div class="col-xs-8 text-tile-text">
+							<%=question.text%>
+						</div>
+						<div class="col-xs-1 forward">
+							<i class="fa fa-chevron-right"></i>
+						</div>
+					</a>
+				<%else%>
+					<a href="/questions/upvote/<%=question.id%>">
+					<div class="col-xs-3 upvote-block" id="<%="#{question.id}"%>">
+						<i class="fa fa-arrow-up"></i>
+						<div class="upvotes">
+							<%=question.upvotes%>
+						</div>
+						<div class="upvote-label">want to</div>
+						<div class="upvote-label">know</div>
+					</div>
+					<a href="<%="/questions/display/#{question.id}"%>">	
+						<div class="col-xs-8 text-tile-text">
+							<%=question.text%>
+						</div>
+						<div class="col-xs-1 forward">
+							<i class="fa fa-chevron-right"></i>
+						</div>
+					</a>
+				<%end%>
+			</div>
+
+		<%end%>
+	</div>
+		<div class="navbar navbar-static-bottom" id="ask-button-bar-static">
+			&nbsp;	
+		</div>
+</div>
+ <%= javascript_include_tag('Search',:type=>"text/javascript") %>
+<div id="lecture-id" data-lecture-id="<%=params[:id]%>">
+	
+</div>
