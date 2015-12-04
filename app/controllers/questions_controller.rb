@@ -2,6 +2,7 @@ class QuestionsController < ApplicationController
 	def index 
 		#TODO: add logic to be for the lecture
 		@questions = Lecture.find(params[:id]).questions
+		@questions = @questions.sort_by{|a| -a[:upvotes]}
 		@subject_id = Lecture.find(params[:id]).subject_id
 		session[:lecture_id]=params[:id]
 	end	
@@ -17,6 +18,7 @@ class QuestionsController < ApplicationController
 		question.upvotes = question.upvotes+1
 		question.upvoted = true
 		question.save
+		Question.order(upvotes: :desc)
 		redirect_to(:back)
 	end
 	def downvote
@@ -51,6 +53,7 @@ class QuestionsController < ApplicationController
 		@question = Question.find(params[:id])
 		if @question.answers
 			@answers = @question.answers
+			@answers = @answers.sort_by{|a| -a[:upvotes]}
 		end
 	end
 

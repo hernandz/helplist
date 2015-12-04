@@ -5,6 +5,7 @@ class AnswersController < ApplicationController
   # GET /answers.json
   def index
     @answers = Answer.all
+
   end
   def upvote
     answer = Answer.find(params[:id])
@@ -32,6 +33,8 @@ class AnswersController < ApplicationController
   def new
     @answer = Answer.new
     @answers = Question.find(params[:id]).answers
+    @answers = @answers.sort_by{|a| -a[:upvotes]}
+
     @question = Question.find(params[:id])
   end
 

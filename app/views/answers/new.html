@@ -41,14 +41,29 @@
 			<%@answers.each do |answer|%>
 				<div class="row text-tile">
 
-					<div class="col-xs-3 upvote-block" id="<%="#{answer.id}"%>">
-						<i class="fa fa-arrow-up"></i>
-						<div class="upvotes">
-							<%=answer.upvotes%>
-						</div>
-						<div class="upvote-label">found this</div>
-						<div class="upvote-label">helpful</div>
-					</div>
+					<%if answer.upvoted%>
+						<a href="/answers/downvote/<%=answer.id%>">
+							<div class="col-xs-3 upvote-block" id="<%="#{answer.id}"%>">
+								<i class="fa fa-arrow-up"></i>
+								<div class="upvotes-green">
+									<%=answer.upvotes%>
+								</div>
+								<div class="upvote-label-green">found this</div>
+								<div class="upvote-label-green">helpful</div>
+							</div>
+						</a>
+					<%else%>
+					<a href="/answers/upvote/<%=answer.id%>">
+							<div class="col-xs-3 upvote-block" id="<%="#{answer.id}"%>">
+								<i class="fa fa-arrow-up"></i>
+								<div class="upvotes">
+									<%=answer.upvotes%>
+								</div>
+								<div class="upvote-label">found this</div>
+								<div class="upvote-label">helpful</div>
+							</div>
+						</a>
+					<%end%>
 					<div class="col-xs-8 text-tile-text">
 						<%=answer.text%>
 					</div>
