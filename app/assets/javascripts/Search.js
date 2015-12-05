@@ -21,10 +21,15 @@ document.getElementById("search").onfocus = function() {
 	}
 	xhr.open("GET", "/questions/html_filter?substring=" + substring + "&lecture_id=" + lecture_id);
 	xhr.send();
-	document.getElementById("search").onblur = function() {
-		document.getElementById("filtered").style.display="none";
-		document.getElementById("unfiltered").style.display="";
-	}	
+
+		if (/^\s*$/.test(substring)){
+		   //value is either empty or contains whitespace characters
+		   //do not append the value
+			document.getElementById("filtered").style.display="none";
+			document.getElementById("unfiltered").style.display="";
+
+		}
+	
 
 	// Return false to prevent the form from actually submitting and reloading the page
 	//return false;

@@ -3,7 +3,6 @@ class QuestionsController < ApplicationController
 		#TODO: add logic to be for the lecture
 		@questions = Lecture.find(params[:id]).questions
 		@questions = @questions.sort_by{|a| -a[:upvotes]}
-		@subject_id = Lecture.find(params[:id]).subject_id
 		session[:lecture_id]=params[:id]
 	end	
 
@@ -39,6 +38,7 @@ class QuestionsController < ApplicationController
 		session[:user_id] = params[:text]
 		session[:created_questions] = Array.new
 		session[:upvoted] = Array.new
+		session[:subject_id] = 1
 		redirect_to(:action => :new, :id => 1)
 	end
 
@@ -64,10 +64,8 @@ class QuestionsController < ApplicationController
 
 	def new 
 		@question = Question.new 
-		if params[:id]
-			@subject = Subject.find(params[:id])
-		end
-		session[:subject_id]=@subject.id
+		@subject = Subject.find(params[:id])
+		session[:subject_id] = @subject.id
 
 	end
 

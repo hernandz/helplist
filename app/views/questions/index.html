@@ -22,7 +22,7 @@
 			&nbsp;	
 	  </div>
 	</nav>
-	<a href="/questions/new/<%=@subject_id%>?lecture_id=<%=params[:id]%>">
+	<a href="/questions/new/<%=session[:subject_id]%>?lecture_id=<%=params[:id]%>">
 		<nav class="navbar navbar-fixed-bottom" id="ask-button-bar">
 		  <div class="container">
 		  		Ask new question
@@ -32,49 +32,53 @@
 	<div id="filtered">
 	</div>
 	<div id="unfiltered">
-		<%@questions.each do |question|%>
+		<%if @questions%>
+			<%@questions.each do |question|%>
 
-			<div class="row text-tile">
-							
-				<%if question.upvoted%>
-					<a href="/questions/downvote/<%=question.id%>">
-					<div class="col-xs-3 upvote-block" id="<%="#{question.id}"%>">
-						<i class="fa fa-arrow-up"></i>
-						<div class="upvotes-green">
-							<%=question.upvotes%>
+				<div class="row text-tile">
+								
+					<%if question.upvoted%>
+						<a href="/questions/downvote/<%=question.id%>">
+						<div class="col-xs-3 upvote-block" id="<%="#{question.id}"%>">
+							<i class="fa fa-arrow-up"></i>
+							<div class="upvotes-green">
+								<%=question.upvotes%>
+							</div>
+							<div class="upvote-label-green">want to</div>
+							<div class="upvote-label-green">know</div>
 						</div>
-						<div class="upvote-label-green">want to</div>
-						<div class="upvote-label-green">know</div>
-					</div>
-					<a href="<%="/questions/display/#{question.id}"%>">	
-						<div class="col-xs-8 text-tile-text">
-							<%=question.text%>
+						<a href="<%="/questions/display/#{question.id}"%>">	
+							<div class="col-xs-8 text-tile-text">
+								<%=question.text%>
+							</div>
+							<div class="col-xs-1 forward">
+								<i class="fa fa-chevron-right"></i>
+							</div>
+						</a>
+					<%else%>
+						<a href="/questions/upvote/<%=question.id%>">
+						<div class="col-xs-3 upvote-block" id="<%="#{question.id}"%>">
+							<i class="fa fa-arrow-up"></i>
+							<div class="upvotes">
+								<%=question.upvotes%>
+							</div>
+							<div class="upvote-label">want to</div>
+							<div class="upvote-label">know</div>
 						</div>
-						<div class="col-xs-1 forward">
-							<i class="fa fa-chevron-right"></i>
-						</div>
-					</a>
-				<%else%>
-					<a href="/questions/upvote/<%=question.id%>">
-					<div class="col-xs-3 upvote-block" id="<%="#{question.id}"%>">
-						<i class="fa fa-arrow-up"></i>
-						<div class="upvotes">
-							<%=question.upvotes%>
-						</div>
-						<div class="upvote-label">want to</div>
-						<div class="upvote-label">know</div>
-					</div>
-					<a href="<%="/questions/display/#{question.id}"%>">	
-						<div class="col-xs-8 text-tile-text">
-							<%=question.text%>
-						</div>
-						<div class="col-xs-1 forward">
-							<i class="fa fa-chevron-right"></i>
-						</div>
-					</a>
-				<%end%>
-			</div>
+						<a href="<%="/questions/display/#{question.id}"%>">	
+							<div class="col-xs-8 text-tile-text">
+								<%=question.text%>
+							</div>
+							<div class="col-xs-1 forward">
+								<i class="fa fa-chevron-right"></i>
+							</div>
+						</a>
+					<%end%>
+				</div>
 
+			<%end%>
+		<%else%>
+			No questions yet
 		<%end%>
 	</div>
 		<div class="navbar navbar-static-bottom" id="ask-button-bar-static">
