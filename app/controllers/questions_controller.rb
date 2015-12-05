@@ -30,7 +30,7 @@ class QuestionsController < ApplicationController
 	end
 	def log_in
 		if session[:user_id]
-			redirect_to(:action => :new, :id => 1)
+			redirect_to(:action => :new, :id => 1, :lecture_id => 1)
 		end
 
 	end
