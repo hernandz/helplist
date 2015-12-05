@@ -8,7 +8,9 @@
  				<span style="color:#ff3333"><%= msg %></span>
 			<% end %>
 			 <% if flash[:notice] %>
+			 <a href="/questions/index/<%=params[:lecture_id]%>">
 				<span style="color:#008210"><%= flash[:notice] %></span>
+			</a>
 			 <% end %>
 		</div>
 	</div>
