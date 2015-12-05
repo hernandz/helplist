@@ -46,6 +46,18 @@ a:active{
 .forward{
 	padding:0;
 }
+.settings{
+	    .fa-cog{
+	    	margin-top:1.5em;
+		font-size:2.5em;
+		color:rgb(177, 177, 177);
+	}
+	.fa-cog-green{
+	    margin-top:1.5em;
+		font-size:2.5em;
+		color:#65B96F;
+	}
+}
 .search-bar{
 	background-color:#D8D8D8;
 	height:3.5em;
@@ -68,7 +80,7 @@ a:active{
 	}
 	.answer-cog{
 		margin-left:-.2em;
-		color:#898989;
+		color:rgb(177, 177, 177);
 
 	}
 	.answer-cog-green{
@@ -256,4 +268,5 @@ a{
 	background-color:#008210;
 
 }
+
 

@@ -75,9 +75,8 @@ class QuestionsController < ApplicationController
 		@question.datetime = DateTime.current;
 	    if @question.update(question_params(params[:question]))
 	      flash[:notice] = "Success! Go to questions"
-	      session[:created_questions].push(@question.id)
-
-	      redirect_to(:action => :new)
+	      @question.save
+	      redirect_to(:action => :new, :id => session[:subject_id], :lecture_id => params[:question][:lecture_id])
 	    else
 		  @subject = Subject.find(session[:subject_id])
 
@@ -86,9 +85,16 @@ class QuestionsController < ApplicationController
 	end
 
 	def delete
+		@question  = Question.find(params[:id])
+	    lecture_id = @question.lecture_id
+	    @question.destroy
+	    redirect_to(:controller=> :questions, :action => :index, :id => lecture_id)
 	end
+	def edit_options
+    	@question = Question.find(params[:id])
+ 	end
 
 	def question_params(params)
-    	params.permit(:text)
+    	params.permit(:text,:subject_id,:upvotes,:lecture_id,:datetime)
  	end
 end
