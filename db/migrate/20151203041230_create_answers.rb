@@ -6,7 +6,7 @@ class CreateAnswers < ActiveRecord::Migration
     	t.integer :upvotes
     	t.datetime :datetime
     	t.integer :question_id
-    	t.integer :user_id
+    	t.string :user_id
       t.boolean :upvoted
 
     end

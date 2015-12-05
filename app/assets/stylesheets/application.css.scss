@@ -64,11 +64,16 @@ a:active{
     float:none;
     height:5em;
     .fa-cog{
-		color:#898989;
 		font-size:1.5em;
 	}
 	.answer-cog{
 		margin-left:-.2em;
+		color:#898989;
+
+	}
+	.answer-cog-green{
+		margin-left:-.2em;
+		color:#65B96F;
 	}
 
 }

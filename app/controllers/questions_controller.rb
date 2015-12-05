@@ -39,7 +39,7 @@ class QuestionsController < ApplicationController
 		session[:created_questions] = Array.new
 		session[:upvoted] = Array.new
 		session[:subject_id] = 1
-		redirect_to(:action => :new, :id => 1)
+		redirect_to(:action => :new, :id => 1, :lecture_id =>1)
 	end
 
 	def sort_by_newest

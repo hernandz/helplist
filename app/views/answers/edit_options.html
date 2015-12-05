@@ -1,0 +1,43 @@
+<div id="main-container" class="container">
+
+	<div class="row">
+
+			<div class="col-xs-12" style="padding:.5em;text-align:center;">
+				<h4>
+					Options:
+				</h4>
+			</div>
+	</div>
+
+	<%if session[:user_id] == @answer.user_id%>
+		<div class="row">
+			<a href="">	
+				<div class="col-xs-12 subject">
+					<h2>
+						Edit
+					</h3>
+				</div>
+			</a>
+		</div>
+		<div class="row">
+			<a href="/answers/delete/<%=@answer.id%>">	
+				<div class="col-xs-12 subject">
+					<h2>
+						Delete
+					</h3>
+				</div>
+			</a>
+		</div>
+	<%else%>
+		<div class="row">
+			<a href="/questions/display/<%=@answer.question_id%>">	
+				<div class="col-xs-12 subject">
+					<h2>
+						Flag for inappropriate content
+					</h3>
+				</div>
+			</a>
+		</div>
+	<%end%>
+
+</div>

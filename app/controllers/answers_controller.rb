@@ -39,7 +39,7 @@ class AnswersController < ApplicationController
   end
 
   # GET /answers/1/edit
-  def edit
+  def edit_options
     @answer = Answer.find(params[:id])
   end
 
@@ -49,6 +49,7 @@ class AnswersController < ApplicationController
     @question = Question.find(params[:answer][:question_id])
     @answer = Answer.new
     @answer.upvotes = 0;
+    @answer.user_id = session[:user_id];
 
     if @answer.update(answer_params(params[:answer])) 
 
@@ -75,12 +76,12 @@ class AnswersController < ApplicationController
 
   # DELETE /answers/1
   # DELETE /answers/1.json
-  def destroy
+  def delete
+    @answer = Answer.find(params[:id])
+    question_id = @answer.question_id
     @answer.destroy
-    respond_to do |format|
-      format.html { redirect_to answers_url, notice: 'Answer was successfully destroyed.' }
-      format.json { head :no_content }
-    end
+    redirect_to(:controller=> :questions, :action => :display, :id => question_id)
+
   end
 
   private
